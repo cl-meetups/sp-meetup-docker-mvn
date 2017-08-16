@@ -3,7 +3,22 @@ pipeline {
   stages {
     stage('Preparacao') {
       steps {
-        echo 'Hello World!'
+        parallel(
+          "Preparacao": {
+            echo 'Hello World!'
+            
+          },
+          "Passo Paralelo": {
+            echo 'Executado em paralelo'
+            sleep 5
+            
+          }
+        )
+      }
+    }
+    stage('Fortune') {
+      steps {
+        sh '/usr/games/fortune'
       }
     }
   }
